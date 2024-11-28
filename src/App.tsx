@@ -4,6 +4,7 @@ import Register from './pages/auth/Register';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import EmployerLayout from './layouts/EmployerLayout';
 import AdminLayout from './layouts/AdminLayout';
+import JobSeekerLayout from './layouts/JobSeekerLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -34,7 +35,6 @@ import PaymentManagement from './pages/admin/PaymentManagement';
 import Reports from './pages/admin/Reports';
 
 // Job seeker pages
-import Layout from './layouts/Layout';
 import Dashboard from './pages/Dashboard';
 import JobSeekerSettings from './pages/settings/Settings';
 import Applications from './pages/applications/Applications';
@@ -72,7 +72,7 @@ function App() {
 
                 {/* Job seeker routes */}
                 <Route element={<RoleBasedRoute allowedRoles={['jobseeker']} />}>
-                  <Route element={<Layout />}>
+                  <Route element={<JobSeekerLayout />}>
                     <Route path="/dashboard" element={<div className="animate-fade-in"><Dashboard /></div>} />
                     <Route path="/settings" element={<div className="animate-fade-in"><JobSeekerSettings /></div>} />
                     <Route path="/applications" element={<div className="animate-fade-in"><Applications /></div>} />
