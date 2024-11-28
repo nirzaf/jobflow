@@ -64,42 +64,42 @@ export default function Analytics() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Analytics Dashboard</h1>
+      <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Analytics Dashboard</h1>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
         {stats.map((stat) => (
           <div
             key={stat.id}
-            className="bg-white rounded-lg shadow p-6"
+            className="bg-white rounded-lg shadow p-4 sm:p-6"
           >
             <div className="flex items-center justify-between mb-4">
               <div className="p-2 bg-indigo-100 rounded-lg">
-                <stat.icon className="w-6 h-6 text-indigo-600" />
+                <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600" />
               </div>
-              <span className={`flex items-center gap-1 text-sm font-medium ${
+              <span className={`flex items-center gap-1 text-xs sm:text-sm font-medium ${
                 stat.trend === 'up' ? 'text-green-600' : 'text-red-600'
               }`}>
                 {stat.trend === 'up' ? (
-                  <TrendingUp className="w-4 h-4" />
+                  <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" />
                 ) : (
-                  <TrendingDown className="w-4 h-4" />
+                  <TrendingDown className="w-3 h-3 sm:w-4 sm:h-4" />
                 )}
                 {stat.change}
               </span>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900">{stat.value}</h3>
-            <p className="text-sm text-gray-500">{stat.name}</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900">{stat.value}</h3>
+            <p className="text-xs sm:text-sm text-gray-500">{stat.name}</p>
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Job Performance */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold">Job Performance</h2>
-            <select className="px-3 py-1 border rounded-lg text-sm">
+        <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3">
+            <h2 className="text-base sm:text-lg font-semibold">Job Performance</h2>
+            <select className="w-full sm:w-auto px-3 py-1 border rounded-lg text-sm">
               <option>Last 30 days</option>
               <option>Last 90 days</option>
               <option>Last 12 months</option>
@@ -108,9 +108,9 @@ export default function Analytics() {
           <div className="space-y-4">
             {jobStats.map((job) => (
               <div key={job.name} className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="font-medium">{job.name}</span>
-                  <span className="text-sm text-gray-500">{job.applications} applications</span>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+                  <span className="font-medium text-sm sm:text-base">{job.name}</span>
+                  <span className="text-xs sm:text-sm text-gray-500">{job.applications} applications</span>
                 </div>
                 <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                   <div
@@ -118,7 +118,7 @@ export default function Analytics() {
                     style={{ width: `${(job.hired / job.applications) * 100}%` }}
                   />
                 </div>
-                <div className="flex justify-between text-sm text-gray-500">
+                <div className="flex justify-between text-xs sm:text-sm text-gray-500">
                   <span>{job.hired} hired</span>
                   <span>{job.inProgress} in progress</span>
                 </div>
@@ -128,10 +128,10 @@ export default function Analytics() {
         </div>
 
         {/* Application Sources */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold">Application Sources</h2>
-            <select className="px-3 py-1 border rounded-lg text-sm">
+        <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3">
+            <h2 className="text-base sm:text-lg font-semibold">Application Sources</h2>
+            <select className="w-full sm:w-auto px-3 py-1 border rounded-lg text-sm">
               <option>Last 30 days</option>
               <option>Last 90 days</option>
               <option>Last 12 months</option>
@@ -140,9 +140,9 @@ export default function Analytics() {
           <div className="space-y-4">
             {sourceStats.map((source) => (
               <div key={source.name} className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="font-medium">{source.name}</span>
-                  <span className="text-sm text-gray-500">{source.value}%</span>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+                  <span className="font-medium text-sm sm:text-base">{source.name}</span>
+                  <span className="text-xs sm:text-sm text-gray-500">{source.value}%</span>
                 </div>
                 <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                   <div
@@ -156,7 +156,7 @@ export default function Analytics() {
         </div>
 
         {/* Cost per Hire */}
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-4 sm:p-6">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-semibold">Cost per Hire</h2>
             <select className="px-3 py-1 border rounded-lg text-sm">
@@ -195,7 +195,7 @@ export default function Analytics() {
         </div>
 
         {/* Hiring Pipeline */}
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-4 sm:p-6">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-semibold">Hiring Pipeline</h2>
             <select className="px-3 py-1 border rounded-lg text-sm">
