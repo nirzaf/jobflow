@@ -1,16 +1,16 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, Navigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import { useAuth } from '../contexts/AuthContext';
 
 export default function AdminLayout() {
-  const { user, isAuthenticated } = useAuth();
+  const { user } = useAuth();
 
-  if (!isAuthenticated) {
+  if (!user) {
     return <Navigate to="/login" />;
   }
 
-  if (user?.role !== 'admin') {
+  if (user.role !== 'admin') {
     return <Navigate to="/" />;
   }
 
