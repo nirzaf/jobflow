@@ -228,13 +228,13 @@ export default function JobSearch() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8 py-4 sm:py-6">
         <div className="flex flex-col lg:flex-row lg:space-x-6">
           {/* Filters Sidebar */}
           <div
             className={`${
               showFilters ? 'block' : 'hidden'
-            } lg:block lg:w-64 space-y-6`}
+            } lg:block lg:w-64 space-y-4 sm:space-y-6 mb-4 lg:mb-0`}
           >
             <div className="rounded-lg bg-white dark:bg-gray-800 p-6 shadow dark:shadow-gray-700 transition-colors duration-200">
               <div className="flex items-center justify-between">
@@ -409,103 +409,107 @@ export default function JobSearch() {
               </select>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {jobs.map((job) => (
                 <div
                   key={job.id}
-                  className="relative rounded-lg bg-white dark:bg-gray-800 p-6 shadow dark:shadow-gray-700 hover:shadow-md dark:hover:shadow-lg transition-all duration-200"
+                  className="relative rounded-lg bg-white dark:bg-gray-800 p-4 sm:p-6 shadow dark:shadow-gray-700 hover:shadow-md dark:hover:shadow-lg transition-all duration-200"
                 >
-                  <div className="flex justify-end gap-2 mb-4">
-                    {job.isFeatured && (
-                      <div className="rounded-full bg-yellow-100 dark:bg-yellow-900 px-3 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-200 flex items-center transition-colors duration-200">
-                        <FaStar className="mr-1 h-3 w-3" />
-                        Featured
+                  <div className="flex flex-wrap justify-between gap-2 mb-3 sm:mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white font-semibold text-base sm:text-lg shrink-0 transition-colors duration-200">
+                        {job.title.split(' ')[0][0]}
+                        {job.title.split(' ')[1] ? job.title.split(' ')[1][0] : ''}
                       </div>
-                    )}
-                    {job.isUrgent && (
-                      <div className="rounded-full bg-red-100 dark:bg-red-900 px-3 py-1 text-xs font-medium text-red-800 dark:text-red-200 flex items-center transition-colors duration-200">
-                        <FaClock className="mr-1 h-3 w-3" />
-                        Urgent
+                      <div>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
+                            {job.title}
+                          </h3>
+                          {React.createElement(getJobIcon(job.category), {
+                            className: "h-4 w-4 text-gray-400 dark:text-gray-500"
+                          })}
+                        </div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                          {job.company.name}
+                        </div>
                       </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {job.isFeatured && (
+                        <div className="rounded-full bg-yellow-100 dark:bg-yellow-900 px-2 sm:px-3 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-200 flex items-center whitespace-nowrap transition-colors duration-200">
+                          <FaStar className="mr-1 h-3 w-3" />
+                          Featured
+                        </div>
+                      )}
+                      {job.isUrgent && (
+                        <div className="rounded-full bg-red-100 dark:bg-red-900 px-2 sm:px-3 py-1 text-xs font-medium text-red-800 dark:text-red-200 flex items-center whitespace-nowrap transition-colors duration-200">
+                          <FaClock className="mr-1 h-3 w-3" />
+                          Urgent
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div className="mt-2 sm:mt-3 flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                    <span className="flex items-center">
+                      <FaMapMarkerAlt className="mr-1.5 h-3 sm:h-4 w-3 sm:w-4 text-gray-500 dark:text-gray-400" />
+                      {job.location}
+                    </span>
+                    <span className="flex items-center">
+                      <FaBriefcase className="mr-1.5 h-3 sm:h-4 w-3 sm:w-4 text-gray-500 dark:text-gray-400" />
+                      {job.type}
+                    </span>
+                    <span className="flex items-center">
+                      <FaDollarSign className="mr-1.5 h-3 sm:h-4 w-3 sm:w-4 text-gray-500 dark:text-gray-400" />
+                      {job.salary.min.toLocaleString()} - {job.salary.max.toLocaleString()} {job.salary.period}
+                    </span>
+                    <span className="flex items-center">
+                      <FaUserGraduate className="mr-1.5 h-3 sm:h-4 w-3 sm:w-4 text-gray-500 dark:text-gray-400" />
+                      {job.experience.level}
+                    </span>
+                    {job.company.rating && (
+                      <span className="flex items-center">
+                        <FaStar className="mr-1.5 h-3 sm:h-4 w-3 sm:w-4 text-yellow-400 dark:text-yellow-300" />
+                        {job.company.rating} ({job.company.reviewCount})
+                      </span>
                     )}
                   </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white font-semibold text-lg transition-colors duration-200">
-                      {job.title.split(' ')[0][0]}
-                      {job.title.split(' ')[1] ? job.title.split(' ')[1][0] : ''}
+                  
+                  <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-gray-600 dark:text-gray-300 line-clamp-2 transition-colors duration-200">
+                    {job.shortDescription}
+                  </p>
+                  
+                  <div className="mt-3 sm:mt-4 flex flex-wrap gap-1.5 sm:gap-2">
+                    {job.skills.slice(0, 5).map((skill) => (
+                      <span
+                        key={skill}
+                        className="rounded-full bg-blue-50 dark:bg-blue-900/50 px-2 sm:px-3 py-1 text-xs font-medium text-blue-600 dark:text-blue-300 flex items-center transition-colors duration-200"
+                      >
+                        <FaCode className="mr-1 h-3 w-3" />
+                        {skill}
+                      </span>
+                    ))}
+                    {job.skills.length > 5 && (
+                      <span className="rounded-full bg-gray-50 dark:bg-gray-700 px-2 sm:px-3 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 transition-colors duration-200">
+                        +{job.skills.length - 5} more
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-4 flex items-center justify-between">
+                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                      <FaRegCalendarAlt className="mr-1.5 h-4 w-4" />
+                      Posted {new Date(job.postedDate).toLocaleDateString()}
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
-                          {job.title}
-                        </h3>
-                        {React.createElement(getJobIcon(job.category), {
-                          className: "h-4 w-4 text-gray-400 dark:text-gray-500"
-                        })}
-                      </div>
-                      <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
-                        <span className="flex items-center">
-                          <FaBuilding className="mr-1.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
-                          {job.company.name}
-                        </span>
-                        <span className="flex items-center">
-                          <FaMapMarkerAlt className="mr-1.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
-                          {job.location}
-                        </span>
-                        <span className="flex items-center">
-                          <FaBriefcase className="mr-1.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
-                          {job.type}
-                        </span>
-                        <span className="flex items-center">
-                          <FaDollarSign className="mr-1.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
-                          {job.salary.min.toLocaleString()} - {job.salary.max.toLocaleString()} {job.salary.period}
-                        </span>
-                        <span className="flex items-center">
-                          <FaUserGraduate className="mr-1.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
-                          {job.experience.level}
-                        </span>
-                        {job.company.rating && (
-                          <span className="flex items-center">
-                            <FaStar className="mr-1.5 h-4 w-4 text-yellow-400 dark:text-yellow-300" />
-                            {job.company.rating} ({job.company.reviewCount} reviews)
-                          </span>
-                        )}
-                      </div>
-                      <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 line-clamp-2 transition-colors duration-200">
-                        {job.shortDescription}
-                      </p>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {job.skills.slice(0, 5).map((skill) => (
-                          <span
-                            key={skill}
-                            className="rounded-full bg-blue-50 dark:bg-blue-900/50 px-3 py-1 text-xs font-medium text-blue-600 dark:text-blue-300 flex items-center transition-colors duration-200"
-                          >
-                            <FaCode className="mr-1 h-3 w-3" />
-                            {skill}
-                          </span>
-                        ))}
-                        {job.skills.length > 5 && (
-                          <span className="rounded-full bg-gray-50 dark:bg-gray-700 px-3 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 transition-colors duration-200">
-                            +{job.skills.length - 5} more
-                          </span>
-                        )}
-                      </div>
-                      <div className="mt-4 flex items-center justify-between">
-                        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                          <FaRegCalendarAlt className="mr-1.5 h-4 w-4" />
-                          Posted {new Date(job.postedDate).toLocaleDateString()}
-                        </div>
-                        <div className="flex gap-2">
-                          <button className="rounded-lg border border-blue-600 dark:border-blue-400 px-4 py-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/50 transition-colors duration-200 flex items-center">
-                            <FaRegBookmark className="mr-1.5 h-4 w-4" />
-                            Save
-                          </button>
-                          <button className="rounded-lg bg-blue-600 dark:bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200 flex items-center">
-                            <FaPaperPlane className="mr-1.5 h-4 w-4" />
-                            Apply Now
-                          </button>
-                        </div>
-                      </div>
+                    <div className="flex gap-2">
+                      <button className="rounded-lg border border-blue-600 dark:border-blue-400 px-4 py-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/50 transition-colors duration-200 flex items-center">
+                        <FaRegBookmark className="mr-1.5 h-4 w-4" />
+                        Save
+                      </button>
+                      <button className="rounded-lg bg-blue-600 dark:bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200 flex items-center">
+                        <FaPaperPlane className="mr-1.5 h-4 w-4" />
+                        Apply Now
+                      </button>
                     </div>
                   </div>
                 </div>
