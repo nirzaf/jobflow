@@ -1,35 +1,113 @@
+import { HiLightBulb, HiUsers, HiGlobe, HiChartBar } from 'react-icons/hi'
+
 export default function About() {
+  const features = [
+    {
+      title: 'Our Vision',
+      description: 'Connecting Qatar\'s talent with world-class opportunities, fostering economic growth and professional development.',
+      icon: HiLightBulb,
+      color: 'bg-blue-500'
+    },
+    {
+      title: 'Our Community',
+      description: 'Building a thriving ecosystem of professionals, employers, and opportunities in Qatar\'s dynamic job market.',
+      icon: HiUsers,
+      color: 'bg-green-500'
+    },
+    {
+      title: 'Global Reach',
+      description: 'Bridging international talent with Qatar\'s ambitious vision, creating a diverse and skilled workforce.',
+      icon: HiGlobe,
+      color: 'bg-purple-500'
+    },
+    {
+      title: 'Market Impact',
+      description: 'Driving economic growth through strategic job matching and workforce development initiatives.',
+      icon: HiChartBar,
+      color: 'bg-red-500'
+    }
+  ]
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">About Qatar Jobs Portal</h1>
-        
-        <div className="prose prose-lg">
-          <p className="text-gray-500 mb-6">
-            Qatar Jobs Portal is the leading job search platform in Qatar, connecting talented professionals 
-            with top employers across various industries.
-          </p>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden py-16 sm:py-24 animate-fade-in">
+        <div className="relative px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-prose text-lg">
+            <h1 className="block text-center text-3xl font-bold leading-8 tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+              About Qatar Jobs Portal
+            </h1>
+            <p className="mt-8 text-center text-xl leading-8 text-gray-600 dark:text-gray-300">
+              Your gateway to career opportunities in Qatar. We connect talented professionals with leading organizations, 
+              fostering growth and innovation in Qatar's dynamic economy.
+            </p>
+          </div>
+        </div>
+      </div>
 
-          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Our Mission</h2>
-          <p className="text-gray-500 mb-6">
-            We are dedicated to simplifying the job search process and helping both job seekers and 
-            employers find their perfect match. Our platform provides innovative tools and resources 
-            to make the hiring process more efficient and effective.
-          </p>
+      {/* Features Grid */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 animate-fade-in-up">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="relative rounded-2xl bg-white dark:bg-gray-800 p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <div className={`absolute -top-4 left-4 p-3 rounded-xl ${feature.color}`}>
+                <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
+              </div>
+              <h3 className="mt-4 text-xl font-semibold text-gray-900 dark:text-white">
+                {feature.title}
+              </h3>
+              <p className="mt-4 text-base text-gray-600 dark:text-gray-300">
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
 
-          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Why Choose Us</h2>
-          <ul className="list-disc list-inside text-gray-500 space-y-2 mb-6">
-            <li>Access to thousands of job opportunities</li>
-            <li>Advanced job matching technology</li>
-            <li>Professional career resources and guidance</li>
-            <li>Direct connection with top employers</li>
-            <li>User-friendly platform</li>
-          </ul>
+      {/* Statistics Section */}
+      <div className="bg-white dark:bg-gray-800 py-16 sm:py-24 animate-fade-in">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="text-center transform hover:scale-105 transition-transform duration-300">
+              <div className="text-4xl font-bold text-blue-600 dark:text-blue-400">5000+</div>
+              <div className="mt-2 text-base text-gray-600 dark:text-gray-300">Active Job Listings</div>
+            </div>
+            <div className="text-center transform hover:scale-105 transition-transform duration-300">
+              <div className="text-4xl font-bold text-green-600 dark:text-green-400">10k+</div>
+              <div className="mt-2 text-base text-gray-600 dark:text-gray-300">Registered Companies</div>
+            </div>
+            <div className="text-center transform hover:scale-105 transition-transform duration-300">
+              <div className="text-4xl font-bold text-purple-600 dark:text-purple-400">50k+</div>
+              <div className="mt-2 text-base text-gray-600 dark:text-gray-300">Job Seekers</div>
+            </div>
+            <div className="text-center transform hover:scale-105 transition-transform duration-300">
+              <div className="text-4xl font-bold text-red-600 dark:text-red-400">95%</div>
+              <div className="mt-2 text-base text-gray-600 dark:text-gray-300">Success Rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Contact Us</h2>
-          <p className="text-gray-500">
-            Have questions or need assistance? Reach out to our support team at support@qatarjobs.com
+      {/* Call to Action */}
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 py-16 animate-fade-in">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Ready to Start Your Journey?
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-lg text-blue-100">
+            Join thousands of professionals who have found their dream careers through Qatar Jobs Portal.
           </p>
+          <div className="mt-8 flex justify-center gap-4">
+            <button className="rounded-md bg-white px-6 py-3 text-base font-semibold text-blue-600 shadow-sm hover:bg-blue-50 transition-all duration-300 transform hover:-translate-y-1">
+              Find Jobs
+            </button>
+            <button className="rounded-md bg-blue-500 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-blue-400 transition-all duration-300 transform hover:-translate-y-1">
+              Post a Job
+            </button>
+          </div>
         </div>
       </div>
     </div>
