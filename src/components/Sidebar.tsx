@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import {
   HiHome,
@@ -18,6 +18,7 @@ import {
 
 export default function Sidebar() {
   const { user, logout } = useAuth()
+  const location = useLocation()
 
   const jobSeekerLinks = [
     { name: 'Dashboard', to: '/dashboard', icon: HiHome },
@@ -63,7 +64,7 @@ export default function Sidebar() {
   const links = getLinks()
 
   return (
-    <div className="w-64 bg-white dark:bg-gray-800 h-full border-r border-gray-200 dark:border-gray-700">
+    <div className="w-64 bg-white dark:bg-gray-800 h-full border-r border-gray-200 dark:border-gray-700 transition-colors duration-200">
       <div className="flex flex-col h-full">
         <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
           <div className="flex-1 px-3 space-y-1">
@@ -74,23 +75,27 @@ export default function Sidebar() {
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
                     isActive
-                      ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200'
-                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-200'
+                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'
                   }`
                 }
               >
-                <link.icon className="mr-3 h-5 w-5" />
+                <link.icon className={`mr-3 h-5 w-5 transition-colors duration-200 ${
+                  location.pathname === link.to
+                    ? 'text-blue-700 dark:text-blue-200'
+                    : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
+                }`} />
                 {link.name}
               </NavLink>
             ))}
           </div>
         </div>
-        <div className="border-t pt-4">
+        <div className="border-t border-gray-200 dark:border-gray-700 pt-4 transition-colors duration-200">
           <button
             onClick={logout}
-            className="flex w-full items-center rounded-lg px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50"
+            className="flex w-full items-center rounded-lg px-3 py-2 text-sm font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
           >
-            <HiUserCircle className="mr-3 h-5 w-5" />
+            <HiUserCircle className="mr-3 h-5 w-5 text-gray-500 dark:text-gray-400" />
             Logout
           </button>
         </div>

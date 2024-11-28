@@ -188,38 +188,38 @@ export default function JobSearch() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
       {/* Search Header */}
-      <div className="bg-white border-b">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 transition-colors duration-200">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
             <div className="flex-1">
               <div className="relative">
-                <FaSearch className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                <FaSearch className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 dark:text-gray-500" />
                 <input
                   type="text"
                   placeholder="Job title, keywords, or company"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 py-3 pl-10 pr-4 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors duration-200"
                 />
               </div>
             </div>
             <div className="flex-1">
               <div className="relative">
-                <FaMapMarkerAlt className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                <FaMapMarkerAlt className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 dark:text-gray-500" />
                 <input
                   type="text"
                   placeholder="City or location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 py-3 pl-10 pr-4 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors duration-200"
                 />
               </div>
             </div>
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              className="inline-flex items-center rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200"
             >
               <FaSlidersH className="mr-2 h-5 w-5" />
               Filters
@@ -236,15 +236,15 @@ export default function JobSearch() {
               showFilters ? 'block' : 'hidden'
             } lg:block lg:w-64 space-y-6`}
           >
-            <div className="rounded-lg bg-white p-6 shadow">
+            <div className="rounded-lg bg-white dark:bg-gray-800 p-6 shadow dark:shadow-gray-700 transition-colors duration-200">
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2 text-gray-600">
+                <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-300">
                   <FaSlidersH className="h-5 w-5" />
                   <span className="font-medium">Filters</span>
                 </div>
                 <button
                   onClick={clearFilters}
-                  className="text-sm text-blue-600 hover:text-blue-800"
+                  className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200"
                 >
                   Clear all
                 </button>
@@ -252,7 +252,7 @@ export default function JobSearch() {
 
               {/* Job Type */}
               <div className="mt-6">
-                <div className="flex items-center space-x-2 text-gray-600">
+                <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-300">
                   <FaBriefcase className="h-5 w-5" />
                   <span className="font-medium">Job Type</span>
                 </div>
@@ -271,9 +271,9 @@ export default function JobSearch() {
                               : types.filter((t) => t !== type)
                           );
                         }}
-                        className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                        className="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 transition-colors duration-200"
                       />
-                      <span className="ml-2 text-sm text-gray-600">{type}</span>
+                      <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">{type}</span>
                     </label>
                   ))}
                 </div>
@@ -281,7 +281,7 @@ export default function JobSearch() {
 
               {/* Experience Level */}
               <div className="mt-6">
-                <div className="flex items-center space-x-2 text-gray-600">
+                <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-300">
                   <FaUserGraduate className="h-5 w-5" />
                   <span className="font-medium">Experience Level</span>
                 </div>
@@ -300,9 +300,9 @@ export default function JobSearch() {
                               : levels.filter((l) => l !== level)
                           );
                         }}
-                        className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                        className="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 transition-colors duration-200"
                       />
-                      <span className="ml-2 text-sm text-gray-600">{level}</span>
+                      <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">{level}</span>
                     </label>
                   ))}
                 </div>
@@ -310,7 +310,7 @@ export default function JobSearch() {
 
               {/* Salary Range */}
               <div className="mt-6">
-                <div className="flex items-center space-x-2 text-gray-600">
+                <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-300">
                   <FaDollarSign className="h-5 w-5" />
                   <span className="font-medium">Salary Range</span>
                 </div>
@@ -321,14 +321,14 @@ export default function JobSearch() {
                       placeholder="Min"
                       value={filters.salaryMin || ''}
                       onChange={(e) => handleFilterChange('salaryMin', e.target.value ? Number(e.target.value) : undefined)}
-                      className="w-1/2 rounded-md border-gray-300 text-sm"
+                      className="w-1/2 rounded-md border-gray-300 dark:border-gray-600 text-sm"
                     />
                     <input
                       type="number"
                       placeholder="Max"
                       value={filters.salaryMax || ''}
                       onChange={(e) => handleFilterChange('salaryMax', e.target.value ? Number(e.target.value) : undefined)}
-                      className="w-1/2 rounded-md border-gray-300 text-sm"
+                      className="w-1/2 rounded-md border-gray-300 dark:border-gray-600 text-sm"
                     />
                   </div>
                 </div>
@@ -336,14 +336,14 @@ export default function JobSearch() {
 
               {/* Posted Within */}
               <div className="mt-6">
-                <div className="flex items-center space-x-2 text-gray-600">
+                <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-300">
                   <FaRegCalendarAlt className="h-5 w-5" />
                   <span className="font-medium">Posted Within</span>
                 </div>
                 <select
                   value={filters.postedWithin || ''}
                   onChange={(e) => handleFilterChange('postedWithin', e.target.value)}
-                  className="mt-2 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-sm"
+                  className="mt-2 block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 py-2 pl-3 pr-10 text-sm transition-colors duration-200"
                 >
                   <option value="">Any time</option>
                   <option value="24h">Last 24 hours</option>
@@ -362,9 +362,9 @@ export default function JobSearch() {
                     onChange={(e) =>
                       handleFilterChange('isRemote', e.target.checked)
                     }
-                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    className="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 transition-colors duration-200"
                   />
-                  <span className="ml-2 text-sm text-gray-600">
+                  <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">
                     Remote Only
                   </span>
                 </label>
@@ -372,7 +372,7 @@ export default function JobSearch() {
 
               {/* Sort By */}
               <div className="mt-6">
-                <div className="flex items-center space-x-2 text-gray-600">
+                <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-300">
                   <FaSlidersH className="h-5 w-5" />
                   <span className="font-medium">Sort By</span>
                 </div>
@@ -381,7 +381,7 @@ export default function JobSearch() {
                   onChange={(e) =>
                     handleFilterChange('sortBy', e.target.value)
                   }
-                  className="mt-2 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-sm"
+                  className="mt-2 block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 py-2 pl-3 pr-10 text-sm transition-colors duration-200"
                 >
                   <option value="relevance">Relevance</option>
                   <option value="date">Date</option>
@@ -394,7 +394,7 @@ export default function JobSearch() {
           {/* Job Listings */}
           <div className="flex-1">
             <div className="mb-6 flex items-center justify-between">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-200">
                 {jobs.length} jobs found
               </p>
               <select
@@ -402,7 +402,7 @@ export default function JobSearch() {
                 onChange={(e) =>
                   handleFilterChange('sortOrder', e.target.value)
                 }
-                className="rounded-md border-gray-300 py-2 pl-3 pr-10 text-sm"
+                className="rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white py-2 pl-3 pr-10 text-sm transition-colors duration-200"
               >
                 <option value="desc">Highest First</option>
                 <option value="asc">Lowest First</option>
@@ -413,94 +413,94 @@ export default function JobSearch() {
               {jobs.map((job) => (
                 <div
                   key={job.id}
-                  className="relative rounded-lg bg-white p-6 shadow hover:shadow-md transition-shadow"
+                  className="relative rounded-lg bg-white dark:bg-gray-800 p-6 shadow dark:shadow-gray-700 hover:shadow-md dark:hover:shadow-lg transition-all duration-200"
                 >
                   <div className="flex justify-end gap-2 mb-4">
                     {job.isFeatured && (
-                      <div className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800 flex items-center">
+                      <div className="rounded-full bg-yellow-100 dark:bg-yellow-900 px-3 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-200 flex items-center transition-colors duration-200">
                         <FaStar className="mr-1 h-3 w-3" />
                         Featured
                       </div>
                     )}
                     {job.isUrgent && (
-                      <div className="rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-800 flex items-center">
+                      <div className="rounded-full bg-red-100 dark:bg-red-900 px-3 py-1 text-xs font-medium text-red-800 dark:text-red-200 flex items-center transition-colors duration-200">
                         <FaClock className="mr-1 h-3 w-3" />
                         Urgent
                       </div>
                     )}
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 text-white font-semibold text-lg">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white font-semibold text-lg transition-colors duration-200">
                       {job.title.split(' ')[0][0]}
                       {job.title.split(' ')[1] ? job.title.split(' ')[1][0] : ''}
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <h3 className="text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors">
+                        <h3 className="text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
                           {job.title}
                         </h3>
                         {React.createElement(getJobIcon(job.category), {
-                          className: "h-4 w-4 text-gray-400"
+                          className: "h-4 w-4 text-gray-400 dark:text-gray-500"
                         })}
                       </div>
-                      <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500">
+                      <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
                         <span className="flex items-center">
-                          <FaBuilding className="mr-1.5 h-4 w-4 text-gray-500" />
+                          <FaBuilding className="mr-1.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
                           {job.company.name}
                         </span>
                         <span className="flex items-center">
-                          <FaMapMarkerAlt className="mr-1.5 h-4 w-4 text-gray-500" />
+                          <FaMapMarkerAlt className="mr-1.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
                           {job.location}
                         </span>
                         <span className="flex items-center">
-                          <FaBriefcase className="mr-1.5 h-4 w-4 text-gray-500" />
+                          <FaBriefcase className="mr-1.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
                           {job.type}
                         </span>
                         <span className="flex items-center">
-                          <FaDollarSign className="mr-1.5 h-4 w-4 text-gray-500" />
+                          <FaDollarSign className="mr-1.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
                           {job.salary.min.toLocaleString()} - {job.salary.max.toLocaleString()} {job.salary.period}
                         </span>
                         <span className="flex items-center">
-                          <FaUserGraduate className="mr-1.5 h-4 w-4 text-gray-500" />
+                          <FaUserGraduate className="mr-1.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
                           {job.experience.level}
                         </span>
                         {job.company.rating && (
                           <span className="flex items-center">
-                            <FaStar className="mr-1.5 h-4 w-4 text-yellow-400" />
+                            <FaStar className="mr-1.5 h-4 w-4 text-yellow-400 dark:text-yellow-300" />
                             {job.company.rating} ({job.company.reviewCount} reviews)
                           </span>
                         )}
                       </div>
-                      <p className="mt-2 text-sm text-gray-600 line-clamp-2">
+                      <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 line-clamp-2 transition-colors duration-200">
                         {job.shortDescription}
                       </p>
                       <div className="mt-4 flex flex-wrap gap-2">
                         {job.skills.slice(0, 5).map((skill) => (
                           <span
                             key={skill}
-                            className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600 flex items-center"
+                            className="rounded-full bg-blue-50 dark:bg-blue-900/50 px-3 py-1 text-xs font-medium text-blue-600 dark:text-blue-300 flex items-center transition-colors duration-200"
                           >
                             <FaCode className="mr-1 h-3 w-3" />
                             {skill}
                           </span>
                         ))}
                         {job.skills.length > 5 && (
-                          <span className="rounded-full bg-gray-50 px-3 py-1 text-xs font-medium text-gray-600">
+                          <span className="rounded-full bg-gray-50 dark:bg-gray-700 px-3 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 transition-colors duration-200">
                             +{job.skills.length - 5} more
                           </span>
                         )}
                       </div>
                       <div className="mt-4 flex items-center justify-between">
-                        <div className="flex items-center text-sm text-gray-500">
+                        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                           <FaRegCalendarAlt className="mr-1.5 h-4 w-4" />
                           Posted {new Date(job.postedDate).toLocaleDateString()}
                         </div>
                         <div className="flex gap-2">
-                          <button className="rounded-lg border border-blue-600 px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 transition-colors flex items-center">
+                          <button className="rounded-lg border border-blue-600 dark:border-blue-400 px-4 py-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/50 transition-colors duration-200 flex items-center">
                             <FaRegBookmark className="mr-1.5 h-4 w-4" />
                             Save
                           </button>
-                          <button className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors flex items-center">
+                          <button className="rounded-lg bg-blue-600 dark:bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200 flex items-center">
                             <FaPaperPlane className="mr-1.5 h-4 w-4" />
                             Apply Now
                           </button>

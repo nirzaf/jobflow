@@ -91,7 +91,7 @@ export default function Companies() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 animate-fade-in">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 py-16">
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-white sm:text-4xl text-center mb-8">
             Discover Top Companies in Qatar
@@ -106,7 +106,7 @@ export default function Companies() {
                 placeholder="Search companies by name or description..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 rounded-lg bg-white dark:bg-gray-800 border-0 focus:ring-2 focus:ring-blue-500 transition-shadow duration-200"
+                className="w-full pl-10 pr-4 py-3 rounded-lg bg-white dark:bg-gray-800 border-0 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-shadow duration-200"
               />
             </div>
           </div>
@@ -122,7 +122,7 @@ export default function Companies() {
               onClick={() => setSelectedIndustry(industry)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 transform hover:-translate-y-1 ${
                 selectedIndustry === industry
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-blue-600 dark:bg-blue-500 text-white'
                   : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700'
               }`}
             >
@@ -136,7 +136,7 @@ export default function Companies() {
           {filteredCompanies.map(company => (
             <div
               key={company.id}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border border-gray-200 dark:border-gray-700"
             >
               <div className="p-6">
                 <div className="flex items-center mb-4">
@@ -178,7 +178,7 @@ export default function Companies() {
                   </div>
                 </div>
                 
-                <button className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition-colors duration-200">
+                <button className="mt-4 w-full bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200">
                   View Open Positions
                 </button>
               </div>
@@ -189,7 +189,7 @@ export default function Companies() {
         {/* Empty State */}
         {filteredCompanies.length === 0 && (
           <div className="text-center py-12">
-            <HiUsers className="mx-auto h-12 w-12 text-gray-400" />
+            <HiUsers className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-600" />
             <h3 className="mt-2 text-lg font-medium text-gray-900 dark:text-white">No companies found</h3>
             <p className="mt-1 text-gray-500 dark:text-gray-400">Try adjusting your search or filter criteria</p>
           </div>
