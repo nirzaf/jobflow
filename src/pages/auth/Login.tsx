@@ -11,7 +11,10 @@ export default function Login() {
 
   const onSubmit = async (data: any) => {
     try {
-      await login(data.email, data.password)
+      // Trim whitespace from email and password
+      const trimmedEmail = data.email.trim()
+      const trimmedPassword = data.password.trim()
+      await login(trimmedEmail, trimmedPassword)
       navigate('/')
     } catch (err) {
       setError('Invalid email or password')
@@ -38,11 +41,20 @@ export default function Login() {
               <input
                 id="email"
                 type="email"
-                {...register('email', { required: true })}
+                {...register('email', { 
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: 'Invalid email address'
+                  },
+                  validate: {
+                    notEmpty: (value) => value.trim() !== '' || 'Email cannot be empty'
+                  }
+                })}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
               />
               {errors.email && (
-                <span className="text-red-500 text-sm">Email is required</span>
+                <span className="text-red-500 text-sm">{errors.email.message}</span>
               )}
             </div>
             <div>
@@ -52,11 +64,16 @@ export default function Login() {
               <input
                 id="password"
                 type="password"
-                {...register('password', { required: true })}
+                {...register('password', { 
+                  required: 'Password is required',
+                  validate: {
+                    notEmpty: (value) => value.trim() !== '' || 'Password cannot be empty'
+                  }
+                })}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
               />
               {errors.password && (
-                <span className="text-red-500 text-sm">Password is required</span>
+                <span className="text-red-500 text-sm">{errors.password.message}</span>
               )}
             </div>
           </div>

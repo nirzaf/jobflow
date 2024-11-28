@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { mockTeamMembers } from '../data/employerMockData'
 
 interface User {
   id: string;
@@ -41,6 +40,25 @@ const mockAdminUser: User = {
   },
 };
 
+const mockEmployerUser: User = {
+  id: 'employer-1',
+  email: 'employer@email.com',
+  name: 'Employer User',
+  role: 'employer',
+  employerData: {
+    companyId: '1',
+    teamRole: 'manager',
+    department: 'HR',
+  },
+};
+
+const mockJobSeekerUser: User = {
+  id: 'jobseeker-1',
+  email: 'jobseeker@email.com',
+  name: 'Job Seeker',
+  role: 'jobseeker',
+};
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
@@ -56,47 +74,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const login = async (email: string, password: string) => {
-    if (!password || password.length < 6) {
-      throw new Error('Invalid password')
-    }
-
-    // Check if it's an admin login
-    if (email === 'admin@email.com' && password === 'AdminPassword@123') {
-      setUser(mockAdminUser)
-      localStorage.setItem('user', JSON.stringify(mockAdminUser))
-      return
-    }
-
-    // Check if it's an employer login
-    if (email === 'employer@email.com' && password === 'EmployerPassword@123') {
-      const employerUser = mockTeamMembers.find(member => member.email === email)
-      if (employerUser) {
-        const user: User = {
-          id: employerUser.id,
-          email: employerUser.email,
-          name: employerUser.name,
-          role: 'employer',
-          employerData: {
-            companyId: '1', // From mockCompany
-            teamRole: employerUser.role,
-            department: employerUser.department,
-          },
+    // Validate credentials for each user type
+    switch (email.toLowerCase()) {
+      case 'admin@email.com':
+        if (password === 'AdminPassword@123') {
+          setUser(mockAdminUser)
+          localStorage.setItem('user', JSON.stringify(mockAdminUser))
+          return
         }
-        setUser(user)
-        localStorage.setItem('user', JSON.stringify(user))
-        return
-      }
+        break
+
+      case 'employer@email.com':
+        if (password === 'EmployerPassword@123') {
+          setUser(mockEmployerUser)
+          localStorage.setItem('user', JSON.stringify(mockEmployerUser))
+          return
+        }
+        break
+
+      case 'jobseeker@email.com':
+        if (password === 'JobSeeker@123') {
+          setUser(mockJobSeekerUser)
+          localStorage.setItem('user', JSON.stringify(mockJobSeekerUser))
+          return
+        }
+        break
     }
 
-    // Regular jobseeker login
-    const mockUser: User = {
-      id: '1',
-      email,
-      name: email.split('@')[0],
-      role: 'jobseeker'
-    }
-    setUser(mockUser)
-    localStorage.setItem('user', JSON.stringify(mockUser))
+    throw new Error('Invalid email or password')
   }
 
   const register = async (email: string, password: string, role: string) => {
