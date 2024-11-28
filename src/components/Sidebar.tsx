@@ -13,10 +13,15 @@ import {
   HiChartBar,
   HiSupport,
   HiCash,
-  HiDocumentReport
+  HiDocumentReport,
+  HiX
 } from 'react-icons/hi'
 
-export default function Sidebar() {
+interface SidebarProps {
+  onClose?: () => void;
+}
+
+export default function Sidebar({ onClose }: SidebarProps) {
   const { user, logout } = useAuth()
   const location = useLocation()
 
@@ -63,17 +68,34 @@ export default function Sidebar() {
 
   const links = getLinks()
 
+  const handleNavClick = () => {
+    if (onClose) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="w-64 bg-white dark:bg-gray-800 h-full border-r border-gray-200 dark:border-gray-700 transition-colors duration-200">
+    <div className="w-72 lg:w-64 bg-white dark:bg-gray-800 h-full border-r border-gray-200 dark:border-gray-700 transition-colors duration-200 overflow-hidden">
       <div className="flex flex-col h-full">
-        <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+        {/* Close button for mobile */}
+        <div className="lg:hidden flex justify-end p-4">
+          <button
+            onClick={onClose}
+            className="p-2 rounded-md text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+          >
+            <HiX className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="flex-1 flex flex-col pt-2 lg:pt-5 pb-4 overflow-y-auto">
           <div className="flex-1 px-3 space-y-1">
             {links.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
+                onClick={handleNavClick}
                 className={({ isActive }) =>
-                  `flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+                  `flex items-center px-4 py-3 text-sm font-medium rounded-md transition-colors duration-200 ${
                     isActive
                       ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-200'
                       : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'
@@ -90,10 +112,14 @@ export default function Sidebar() {
             ))}
           </div>
         </div>
-        <div className="border-t border-gray-200 dark:border-gray-700 pt-4 transition-colors duration-200">
+
+        <div className="border-t border-gray-200 dark:border-gray-700 p-4 transition-colors duration-200">
           <button
-            onClick={logout}
-            className="flex w-full items-center rounded-lg px-3 py-2 text-sm font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+            onClick={() => {
+              if (onClose) onClose();
+              logout();
+            }}
+            className="flex w-full items-center rounded-lg px-4 py-3 text-sm font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
           >
             <HiUserCircle className="mr-3 h-5 w-5 text-gray-500 dark:text-gray-400" />
             Logout

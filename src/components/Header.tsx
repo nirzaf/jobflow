@@ -20,7 +20,7 @@ export default function Header() {
         <div className="flex justify-between h-16">
           {/* Logo and Navigation */}
           <div className="flex items-center">
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center pl-12 lg:pl-0">
               <span className="text-xl font-bold text-gray-800 dark:text-white">Qatar Jobs Portal</span>
             </Link>
             {/* Desktop Navigation */}
