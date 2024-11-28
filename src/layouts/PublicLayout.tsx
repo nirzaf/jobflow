@@ -1,12 +1,14 @@
 import { Outlet } from 'react-router-dom'
-import PublicNavbar from '../components/PublicNavbar'
+import Header from '../components/Header'
 
 export default function PublicLayout() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <PublicNavbar />
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <Header />
       <main>
-        <Outlet />
+        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+          <Outlet />
+        </div>
       </main>
     </div>
   )
