@@ -5,7 +5,6 @@ import {
   FaBriefcase, 
   FaStar, 
   FaClock, 
-  FaBuilding, 
   FaSlidersH,
   FaDollarSign,
   FaRegCalendarAlt,
@@ -437,13 +436,13 @@ export default function JobSearch() {
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {job.isFeatured && (
-                        <div className="rounded-full bg-yellow-100 dark:bg-yellow-900 px-2 sm:px-3 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-200 flex items-center whitespace-nowrap transition-colors duration-200">
+                        <div className="rounded-full bg-yellow-100 dark:bg-yellow-900/50 px-2 sm:px-3 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-200 flex items-center whitespace-nowrap transition-colors duration-200">
                           <FaStar className="mr-1 h-3 w-3" />
                           Featured
                         </div>
                       )}
                       {job.isUrgent && (
-                        <div className="rounded-full bg-red-100 dark:bg-red-900 px-2 sm:px-3 py-1 text-xs font-medium text-red-800 dark:text-red-200 flex items-center whitespace-nowrap transition-colors duration-200">
+                        <div className="rounded-full bg-red-100 dark:bg-red-900/50 px-2 sm:px-3 py-1 text-xs font-medium text-red-800 dark:text-red-200 flex items-center whitespace-nowrap transition-colors duration-200">
                           <FaClock className="mr-1 h-3 w-3" />
                           Urgent
                         </div>
