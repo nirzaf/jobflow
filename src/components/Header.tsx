@@ -1,12 +1,18 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import ThemeToggle from './ThemeToggle'
 import { useState } from 'react'
-import { HiMenu, HiX } from 'react-icons/hi'
+import { HiMenu, HiX, HiLogout } from 'react-icons/hi'
 
 export default function Header() {
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout()
+    navigate('/')
+  }
 
   return (
     <header className="bg-white dark:bg-gray-800 shadow-sm">
@@ -31,10 +37,23 @@ export default function Header() {
             </nav>
           </div>
 
-          {/* Right side: Theme toggle and Auth buttons */}
+          {/* Right side: Theme toggle, Auth buttons, and Logout */}
           <div className="hidden md:flex md:items-center md:space-x-4">
             <ThemeToggle />
-            {!user ? (
+            {user ? (
+              <div className="flex items-center space-x-4">
+                <span className="text-sm text-gray-600 dark:text-gray-300">
+                  {user.name}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                  aria-label="Logout"
+                >
+                  <HiLogout className="h-5 w-5" />
+                </button>
+              </div>
+            ) : (
               <div className="flex items-center space-x-4">
                 <Link
                   to="/login"
@@ -49,19 +68,24 @@ export default function Header() {
                   Sign Up
                 </Link>
               </div>
-            ) : (
-              <span className="text-sm text-gray-600 dark:text-gray-300">
-                {user.name}
-              </span>
             )}
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile menu button and theme toggle */}
+          <div className="md:hidden flex items-center space-x-2">
             <ThemeToggle />
+            {user && (
+              <button
+                onClick={handleLogout}
+                className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                aria-label="Logout"
+              >
+                <HiLogout className="h-5 w-5" />
+              </button>
+            )}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="ml-2 inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none"
             >
               {isMenuOpen ? <HiX className="h-6 w-6" /> : <HiMenu className="h-6 w-6" />}
             </button>

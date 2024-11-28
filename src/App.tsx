@@ -34,77 +34,81 @@ import PaymentManagement from './pages/admin/PaymentManagement';
 import Reports from './pages/admin/Reports';
 
 // Job seeker pages
-import Layout from './components/Layout';
+import Layout from './layouts/Layout';
 import Dashboard from './pages/Dashboard';
 import JobSeekerSettings from './pages/settings/Settings';
 import Applications from './pages/applications/Applications';
 import JobAlerts from './pages/alerts/JobAlerts';
+
+import './styles/global.css'
 
 function App() {
   return (
     <Router>
       <ThemeProvider>
         <AuthProvider>
-          <Routes>
-            {/* Public Routes */}
-            <Route element={<PublicLayout />}>
-              <Route path="/" element={
-                <>
-                  <JobSearch />
-                  <RoleBasedRedirect />
-                </>
-              } />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/jobs" element={<JobSearch />} />
-              <Route path="/companies" element={<Companies />} />
-              <Route path="/about" element={<About />} />
-            </Route>
-
-            {/* Protected routes */}
-            <Route element={<ProtectedRoute />}>
-              {/* Home route with role-based redirect */}
-              <Route path="/" element={<RoleBasedRedirect />} />
-
-              {/* Job seeker routes */}
-              <Route element={<RoleBasedRoute allowedRoles={['jobseeker']} />}>
-                <Route element={<Layout />}>
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/settings" element={<JobSeekerSettings />} />
-                  <Route path="/applications" element={<Applications />} />
-                  <Route path="/alerts" element={<JobAlerts />} />
-                </Route>
+          <div className="min-h-screen flex flex-col">
+            <Routes>
+              {/* Public Routes */}
+              <Route element={<PublicLayout />}>
+                <Route path="/" element={
+                  <div className="animate-fade-in">
+                    <JobSearch />
+                    <RoleBasedRedirect />
+                  </div>
+                } />
+                <Route path="/login" element={<div className="animate-slide-up"><Login /></div>} />
+                <Route path="/register" element={<div className="animate-slide-up"><Register /></div>} />
+                <Route path="/forgot-password" element={<div className="animate-slide-up"><ForgotPassword /></div>} />
+                <Route path="/jobs" element={<div className="animate-fade-in"><JobSearch /></div>} />
+                <Route path="/companies" element={<div className="animate-fade-in"><Companies /></div>} />
+                <Route path="/about" element={<div className="animate-fade-in"><About /></div>} />
               </Route>
 
-              {/* Employer Routes */}
-              <Route element={<RoleBasedRoute allowedRoles={['employer']} />}>
-                <Route element={<EmployerLayout />}>
-                  <Route path="/employer" element={<EmployerDashboard />} />
-                  <Route path="/employer/company-profile" element={<CompanyProfile />} />
-                  <Route path="/employer/job-postings" element={<JobPostings />} />
-                  <Route path="/employer/candidates" element={<Candidates />} />
-                  <Route path="/employer/interviews" element={<Interviews />} />
-                  <Route path="/employer/team" element={<TeamMembers />} />
-                  <Route path="/employer/settings" element={<EmployerSettings />} />
-                </Route>
-              </Route>
+              {/* Protected routes */}
+              <Route element={<ProtectedRoute />}>
+                {/* Home route with role-based redirect */}
+                <Route path="/" element={<RoleBasedRedirect />} />
 
-              {/* Admin Routes */}
-              <Route element={<RoleBasedRoute allowedRoles={['admin']} />}>
-                <Route element={<AdminLayout />}>
-                  <Route path="/admin" element={<AdminDashboard />} />
-                  <Route path="/admin/analytics" element={<Analytics />} />
-                  <Route path="/admin/users" element={<UserManagement />} />
-                  <Route path="/admin/content" element={<ContentModeration />} />
-                  <Route path="/admin/settings" element={<SystemSettings />} />
-                  <Route path="/admin/support" element={<SupportTickets />} />
-                  <Route path="/admin/payments" element={<PaymentManagement />} />
-                  <Route path="/admin/reports" element={<Reports />} />
+                {/* Job seeker routes */}
+                <Route element={<RoleBasedRoute allowedRoles={['jobseeker']} />}>
+                  <Route element={<Layout />}>
+                    <Route path="/dashboard" element={<div className="animate-fade-in"><Dashboard /></div>} />
+                    <Route path="/settings" element={<div className="animate-fade-in"><JobSeekerSettings /></div>} />
+                    <Route path="/applications" element={<div className="animate-fade-in"><Applications /></div>} />
+                    <Route path="/alerts" element={<div className="animate-fade-in"><JobAlerts /></div>} />
+                  </Route>
+                </Route>
+
+                {/* Employer Routes */}
+                <Route element={<RoleBasedRoute allowedRoles={['employer']} />}>
+                  <Route element={<EmployerLayout />}>
+                    <Route path="/employer" element={<div className="animate-fade-in"><EmployerDashboard /></div>} />
+                    <Route path="/employer/company-profile" element={<div className="animate-fade-in"><CompanyProfile /></div>} />
+                    <Route path="/employer/job-postings" element={<div className="animate-fade-in"><JobPostings /></div>} />
+                    <Route path="/employer/candidates" element={<div className="animate-fade-in"><Candidates /></div>} />
+                    <Route path="/employer/interviews" element={<div className="animate-fade-in"><Interviews /></div>} />
+                    <Route path="/employer/team" element={<div className="animate-fade-in"><TeamMembers /></div>} />
+                    <Route path="/employer/settings" element={<div className="animate-fade-in"><EmployerSettings /></div>} />
+                  </Route>
+                </Route>
+
+                {/* Admin Routes */}
+                <Route element={<RoleBasedRoute allowedRoles={['admin']} />}>
+                  <Route element={<AdminLayout />}>
+                    <Route path="/admin" element={<div className="animate-fade-in"><AdminDashboard /></div>} />
+                    <Route path="/admin/analytics" element={<div className="animate-fade-in"><Analytics /></div>} />
+                    <Route path="/admin/users" element={<div className="animate-fade-in"><UserManagement /></div>} />
+                    <Route path="/admin/content" element={<div className="animate-fade-in"><ContentModeration /></div>} />
+                    <Route path="/admin/settings" element={<div className="animate-fade-in"><SystemSettings /></div>} />
+                    <Route path="/admin/support" element={<div className="animate-fade-in"><SupportTickets /></div>} />
+                    <Route path="/admin/payments" element={<div className="animate-fade-in"><PaymentManagement /></div>} />
+                    <Route path="/admin/reports" element={<div className="animate-fade-in"><Reports /></div>} />
+                  </Route>
                 </Route>
               </Route>
-            </Route>
-          </Routes>
+            </Routes>
+          </div>
         </AuthProvider>
       </ThemeProvider>
     </Router>
