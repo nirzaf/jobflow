@@ -12,27 +12,28 @@ export default function Header() {
     <header className="bg-white dark:bg-gray-800 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          {/* Logo */}
+          {/* Logo and Navigation */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <span className="text-xl font-bold text-gray-800 dark:text-white">Qatar Jobs Portal</span>
             </Link>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:ml-6 md:flex md:space-x-4">
+              <Link to="/jobs" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2">
+                Browse Jobs
+              </Link>
+              <Link to="/companies" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2">
+                Companies
+              </Link>
+              <Link to="/about" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2">
+                About Us
+              </Link>
+            </nav>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-6">
-            <Link to="/jobs" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-              Browse Jobs
-            </Link>
-            <Link to="/companies" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-              Companies
-            </Link>
-            <Link to="/about" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-              About Us
-            </Link>
-            
+          {/* Right side: Theme toggle and Auth buttons */}
+          <div className="hidden md:flex md:items-center md:space-x-4">
             <ThemeToggle />
-
             {!user ? (
               <div className="flex items-center space-x-4">
                 <Link
