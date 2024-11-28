@@ -3,13 +3,18 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../../contexts/AuthContext'
 
+type FormData = {
+  email: string;
+  password: string;
+}
+
 export default function Login() {
   const { login } = useAuth()
   const navigate = useNavigate()
   const [error, setError] = useState('')
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormData) => {
     try {
       // Trim whitespace from email and password
       const trimmedEmail = data.email.trim()
@@ -54,7 +59,7 @@ export default function Login() {
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
               />
               {errors.email && (
-                <span className="text-red-500 text-sm">{errors.email.message}</span>
+                <span className="text-red-500 text-sm">{errors.email.message as string}</span>
               )}
             </div>
             <div>
@@ -73,7 +78,7 @@ export default function Login() {
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
               />
               {errors.password && (
-                <span className="text-red-500 text-sm">{errors.password.message}</span>
+                <span className="text-red-500 text-sm">{errors.password.message as string}</span>
               )}
             </div>
           </div>
