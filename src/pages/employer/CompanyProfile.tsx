@@ -1,5 +1,5 @@
 import { mockCompany, mockTeamMembers } from '../../data/employerMockData';
-import { Globe, Linkedin, Twitter, Facebook, MapPin, Calendar } from 'lucide-react';
+import { Globe, MapPin, Calendar } from 'lucide-react';
 
 export default function CompanyProfile() {
   const company = mockCompany;
@@ -139,7 +139,7 @@ export default function CompanyProfile() {
                 <h3 className="text-sm font-medium text-gray-900">Location</h3>
                 <div className="flex items-start gap-2 mt-1 text-sm text-gray-600">
                   <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                  <span className="break-words">{company.location}</span>
+                  <span className="break-words">{company.locations[0].address}</span>
                 </div>
               </div>
 
@@ -147,7 +147,7 @@ export default function CompanyProfile() {
                 <h3 className="text-sm font-medium text-gray-900">Founded</h3>
                 <div className="flex items-center gap-2 mt-1 text-sm text-gray-600">
                   <Calendar className="w-4 h-4 flex-shrink-0" />
-                  {company.founded}
+                  {new Date(company.createdAt).getFullYear()}
                 </div>
               </div>
             </div>
